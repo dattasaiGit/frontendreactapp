@@ -1,4 +1,4 @@
 const config = {
-    "url":"careerconnect21.up.railway.app"  
+    "url":"https://careerconnect21.up.railway.app/"  
 }
 export default config;
