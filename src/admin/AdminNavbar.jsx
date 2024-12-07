@@ -3,7 +3,7 @@ import './admin.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import AdminHome from './AdminHome';
 import logo from '.././main/images/logo.png';
-import VerifyUsers from './verifyusers';
+import VerifyUsers from './VerifyUsers';
 import ViewAllStudents from './ViewAllStudents';
 import DeleteStudent from './DeleteStudent';
 import ViewAllOfficers from './ViewAllOfficers';
