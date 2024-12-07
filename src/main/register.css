@@ -1,0 +1,228 @@
+/* Overall Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Container */
+.registration-card {
+    display: flex;
+    max-width: 1000px;
+    margin: 50px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+/* Left Image Section */
+.registration-photo-section {
+    width: 45%;
+    height: 100%; /* Full height within the card */
+    background-color: #f0f0f0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.registration-photo-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the entire section */
+    display: block;
+    max-width: none; /* Ensures no max width restrictions */
+    max-height: none; /* Ensures no max height restrictions */
+}
+
+
+/* Right Form Section */
+.registration-form-section {
+    width: 55%;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+}
+
+.registration-form-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Role Selection Styling */
+.registration-role-selection {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.registration-role-selection button {
+    position: relative;
+    width: 30%;
+    height: 120px;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    transition: border-color 0.3s;
+}
+
+.registration-role-selection button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.registration-role-selection button.active {
+    border-color: #007bff;
+}
+
+/* Form Field Styling */
+.registration-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.registration-form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.registration-form-item label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.registration-form-item input[type="text"],
+.registration-form-item input[type="email"],
+.registration-form-item input[type="password"],
+.registration-form-item input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.registration-form-item input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Gender Radio Buttons Styling */
+.registration-form-item div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.registration-form-item div input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Submit Button Styling */
+button[type="submit"],
+.admin-login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.admin-login-btn {
+    background-color: #007bff;
+}
+
+.admin-login-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Additional Links Styling */
+.forgot-password,
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password a,
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password a:hover,
+.register-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Error Message Styling */
+.recruiter-registration-error {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .registration-card {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    .registration-photo-section,
+    .registration-form-section {
+        width: 100%;
+    }
+
+    .registration-form-section {
+        padding: 20px;
+    }
+}
+
+
+.gender-options {
+    display: flex;
+    flex-direction: row; 
+    gap: 0px;
+}
+
+.gender-options label {
+    display: flex;
+}
+
+
+.gender-options input[type="radio"] {
+    margin-right: 18px;
+    width: 15px; 
+    height: 35px;
+}
+
