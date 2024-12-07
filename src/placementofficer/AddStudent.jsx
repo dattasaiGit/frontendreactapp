@@ -1,6 +1,6 @@
 import  { useState } from 'react';
 import axios from 'axios';
-import './placementofficer.css';
+import './PlacementOfficer.css';
 import config from './../config';
 
 export default function AddStudent() {
