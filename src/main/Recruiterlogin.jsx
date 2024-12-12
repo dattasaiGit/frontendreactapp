@@ -26,12 +26,22 @@ export default function Recruiterlogin({ onRecruiterLogin }) {
                 `${config.url}/recruiter/checkrecruiterlogin?email=${formdata.email}&password=${formdata.password}`
             );
             if (response.data) {
+               const r = response.data;
+              if(r.status=="registered")
+              {
+                setMessage("Your account is not activated yet");
+              }
+              else if(r.status=="Deleted")
+              {
+                setMessage("Your account has been deleted");
+              }
+              else
+              {
                 localStorage.setItem('recruiter', JSON.stringify(response.data));
-                console.log(response.data);
-                console.log("logged");
                 onRecruiterLogin(); // Call the parent function
                 console.log("check");
                 navigate('/recruiterhome');
+              }
             } else {
                 console.log("Not logged");
                 console.log(error)
