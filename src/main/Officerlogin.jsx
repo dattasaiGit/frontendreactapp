@@ -26,14 +26,25 @@ export default function PlacementOfficerLogin({ onOfficerLogin }) {
         `${config.url}/officer/checkofficerlogin?email=${formdata.email}&password=${formdata.password}`
       );
       if (response.data) {
-        localStorage.setItem('placementofficer', JSON.stringify(response.data));
-        console.log(response.data);
-        console.log('logged');
-        console.log(message)
-        onOfficerLogin();
-        navigate('/placementofficerhome');
+         const p = response.data;
+          if(p.status=="registered")
+          {
+            setMessage("Your account is not activated yet");
+          }
+          else if(p.status=="Deleted")
+          {
+            setMessage("Your account has been deleted");
+          }
+          else
+          {
+            localStorage.setItem('placementofficer', JSON.stringify(response.data));
+            console.log("logged");
+            onOfficerLogin();
+            navigate('/placementofficerhome');
+          }
       } else {
         setMessage('Login Failed');
+        console.log(error.message);
         setError('');
       }
     } catch (err) {
@@ -44,9 +55,9 @@ export default function PlacementOfficerLogin({ onOfficerLogin }) {
 
   return (
     <div>
-      {error && (
+      {message && (
         <p style={{ color: 'red', textAlign: 'center', marginBottom: '10px' }}>
-          {error}
+          {message}
         </p>
       )}
       <form onSubmit={handleSubmit}>
