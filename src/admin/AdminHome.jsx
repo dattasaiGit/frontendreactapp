@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import config from '../config';
 
 export default function AdminHome() {
   const [studentCount, setStudentCount] = useState(0);
