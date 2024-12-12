@@ -11,27 +11,27 @@ export default function AdminHome() {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const studentResponse = await fetch('http://localhost:2030/admin/studentcount');
+        const studentResponse = await fetch(`${config.url}/admin/studentcount`);
         const studentData = await studentResponse.json();
         setStudentCount(studentData);
 
-        const companyResponse = await fetch('http://localhost:2030/admin/recruitercount');
+        const companyResponse = await fetch(`${config.url}/admin/recruitercount`);
         const companyData = await companyResponse.json();
         setCompanyCount(companyData);
 
-        const jobResponse = await fetch('http://localhost:2030/admin/jobcount');
+        const jobResponse = await fetch(`${config.url}/admin/jobcount`);
         const jobData = await jobResponse.json();
         setJobCount(jobData);
 
-        const applicationResponse = await fetch('http://localhost:2030/admin/applicationscount');
+        const applicationResponse = await fetch(`${config.url}/admin/applicationscount`);
         const applicationData = await applicationResponse.json();
         setApplicationCount(applicationData);
 
-        const placedResponse = await fetch('http://localhost:2030/admin/placedcount');
+        const placedResponse = await fetch(`${config.url}/admin/placedcount`);
         const placedData = await placedResponse.json();
         setPlacedCount(placedData);
 
-        const pendingResponse = await fetch('http://localhost:2030/admin/pendingcount');
+        const pendingResponse = await fetch(`${config.url}/admin/pendingcount`);
         const pendingData = await pendingResponse.json();
         setPendingCount(pendingData);
       } catch (error) {
