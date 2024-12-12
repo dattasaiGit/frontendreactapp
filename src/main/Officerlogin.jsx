@@ -56,7 +56,7 @@ export default function PlacementOfficerLogin({ onOfficerLogin }) {
   return (
     <div>
       {message && (
-        <p style={{ color: 'red', textAlign: 'center', marginBottom: '10px' }}>
+        <p style={{ color: 'red', textAlign: 'center', marginBottom: '10px' }} className='login-error'> 
           {message}
         </p>
       )}
