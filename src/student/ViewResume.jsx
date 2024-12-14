@@ -17,7 +17,7 @@ export default function ViewResume() {
       setResumeUrl(url); 
     } catch (error) {
       console.error('Error fetching resume:', error);
-      setError('Failed to load resume.');
+      setError('');
     }
   }, []); 
 
