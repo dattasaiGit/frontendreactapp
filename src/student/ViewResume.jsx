@@ -43,7 +43,7 @@ export default function ViewResume() {
       </div>
       <br />
       <h3 style={{ alignContent: 'center' }}><u>View Resume</u></h3>
-      {error && <h4 style={{ color: 'red', alignContent: 'center' }}>{error}</h4>}
+      
 
       {resumeUrl ? (
         <div style={{ marginTop: '20px' }}>
