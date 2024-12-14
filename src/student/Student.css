@@ -325,6 +325,25 @@ body {
 .apply-button:active {
     transform: translateY(0);
 }
+.apply-button:disabled {
+    background-color: #6c757d;
+    color: #fff;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  .already-applied {
+    cursor: not-allowed;
+    background-color: #ddd;
+    color: #6c757d;
+    border: 1px solid #ccc;
+    pointer-events: auto;
+  }
+  
+  .already-applied:hover {
+    cursor: not-allowed;
+  }
+
 
 /* Error Message Styles */
 .error-message {
