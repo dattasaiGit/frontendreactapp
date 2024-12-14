@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify'; // Import Toast
-import 'react-toastify/dist/ReactToastify.css'; // Toast CSS
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 import config from '../config';
 
 export default function ViewJob() {
   const [jobs, setJobs] = useState([]);
   const [error, setError] = useState('');
   const [studentdata, setStudentData] = useState(null);
+  const [appliedJobs, setAppliedJobs] = useState([]);
 
-  // Fetch student data from localStorage
   useEffect(() => {
     const storedStudentData = localStorage.getItem('student');
     if (storedStudentData) {
@@ -18,48 +18,53 @@ export default function ViewJob() {
     }
   }, []);
 
-  // Function to apply for a job
-  const applyJob = async (id) => {
-    try {
-      const job = await axios.get(`${config.url}/student/getjob?id=${id}`);
-      const jobData = job.data;
-      // Get current date in YYYY-MM-DD format
-      const currentDate = new Date();
-      const formattedDate = currentDate.toISOString().split('T')[0]; // Get only YYYY-MM-DD
+  const applyJob = async (job) => {
 
-      // Make API call to apply for the job
-      await axios.post(`${config.url}/student/applyjob`, {
-        jid: id,
-        jtitle: jobData.title,
+    if (appliedJobs.includes(job.id)) {
+      toast.info(`You have already applied for ${job.title}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    try {
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString().split('T')[0];
+
+      const response = await axios.post(`${config.url}/student/applyjob`, {
+        jid: job.id,
+        jtitle: job.title,
         sid: studentdata.id,
         sname: studentdata.name,
-        rid: jobData.rid,
-        date: formattedDate, // Use formatted date
-        skills: jobData.skills,
+        rid: job.rid,
+        date: formattedDate,
+        skills: job.skills,
         status: 'Applied'
       });
 
-      // Show success toast notification
-      toast.success(`You have successfully applied for ${jobData.title}`, {
+      setAppliedJobs(prev => [...prev, job.id]);
+
+      toast.success(`Successfully applied for ${job.title}`, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
       });
     } catch (error) {
-      setError(error.message);
-      // Show error toast notification
-      toast.error(`Failed to apply: ${error.message}`, {
+      toast.error(`Failed to apply: ${error.response?.data?.message || error.message}`, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
       });
     }
   };
@@ -73,6 +78,14 @@ export default function ViewJob() {
           setJobs(response.data);
         }
       } catch (error) {
+        toast.error(`Failed to fetch jobs: ${error.message}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
         setError(error.message);
       }
     };
@@ -83,7 +96,7 @@ export default function ViewJob() {
   return (
     <div className="jobs-container">
       <h1 className="page-title">Job Listings</h1>
-      <ToastContainer /> {/* Add Toast Container */}
+      <ToastContainer /> 
       {jobs.length > 0 ? (
         <div className="jobs-grid">
           {jobs.map((job) => (
@@ -140,9 +153,10 @@ export default function ViewJob() {
               </div>
               <button
                 className="apply-button"
-                onClick={() => applyJob(job.id)}
+                onClick={() => applyJob(job)}
+                disabled={appliedJobs.includes(job.id)}
               >
-                Apply Now
+                {appliedJobs.includes(job.id) ? 'Applied' : 'Apply Now'}
               </button>
             </div>
           ))}
