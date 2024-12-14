@@ -152,12 +152,17 @@ export default function ViewJob() {
                 </div>
               </div>
               <button
-                className="apply-button"
-                onClick={() => applyJob(job)}
-                disabled={appliedJobs.includes(job.id)}
-              >
-                {appliedJobs.includes(job.id) ? 'Applied' : 'Apply Now'}
-              </button>
+            className={`apply-button ${appliedJobs.includes(job.id) ? 'already-applied' : ''}`}
+            onClick={() => applyJob(job)}
+            disabled={appliedJobs.includes(job.id)}
+            style={
+              appliedJobs.includes(job.id)
+                ? { cursor: 'not-allowed' }
+                : {}
+            }
+          >
+            {appliedJobs.includes(job.id) ? 'Already Applied' : 'Apply Now'}
+          </button>
             </div>
           ))}
         </div>
